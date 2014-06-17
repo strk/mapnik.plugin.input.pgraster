@@ -89,18 +89,22 @@ pgraster_datasource::pgraster_datasource(parameters const& params)
 
     GDALAllRegister();
 
-    boost::optional<std::string> file = params.get<std::string>("file");
-    if (! file) throw datasource_exception("missing <file> parameter");
+    boost::optional<std::string> host = params.get<std::string>("host");
+    boost::optional<std::string> port = params.get<std::string>("port");
+    boost::optional<std::string> dbname = params.get<std::string>("dbname");
+    boost::optional<std::string> user = params.get<std::string>("user");
+    boost::optional<std::string> password = params.get<std::string>("password");
+    boost::optional<std::string> table = params.get<std::string>("table");
+    boost::optional<std::string> column = params.get<std::string>("raster_field");
 
-    boost::optional<std::string> base = params.get<std::string>("base");
-    if (base)
-    {
-        dataset_name_ = *base + "/" + *file;
-    }
-    else
-    {
-        dataset_name_ = *file;
-    }
+    dataset_name_ = "pg:mode=2";
+    if ( dbname ) dataset_name_ += " dbname=" + dbname.get();
+    if ( host ) dataset_name_ += " host=" + host.get();
+    if ( user ) dataset_name_ += " user=" + user.get();
+    if ( port ) dataset_name_ += " port=" + port.get();
+    if ( table ) dataset_name_ += " table=" + table.get();
+    else throw datasource_exception("missing <table> parameter");
+    if ( column ) dataset_name_ += " column=" + *column;
 
     shared_dataset_ = *params.get<mapnik::boolean>("shared", false);
     band_ = *params.get<mapnik::value_integer>("band", -1);
@@ -122,7 +126,7 @@ pgraster_datasource::pgraster_datasource(parameters const& params)
         bbox_override = extent_.from_string(*bbox_s);
         if (! bbox_override)
         {
-            throw datasource_exception("GDAL Plugin: bbox parameter '" + *bbox_s + "' invalid");
+            throw datasource_exception("PGRaster Plugin: bbox parameter '" + *bbox_s + "' invalid");
         }
     }
 
@@ -163,7 +167,7 @@ pgraster_datasource::pgraster_datasource(parameters const& params)
     /*
       if (tr[2] != 0 || tr[4] != 0)
       {
-      throw datasource_exception("GDAL Plugin: only 'north up' images are supported");
+      throw datasource_exception("PGRaster Plugin: only 'north up' images are supported");
       }
     */
 
