@@ -2,7 +2,7 @@
 
 CXXFLAGS = $(shell mapnik-config --cflags) -fPIC
 
-LIBS = $(shell mapnik-config --libs --ldflags --dep-libs)
+LIBS = $(shell mapnik-config --libs --ldflags --dep-libs) $(shell gdal-config --libs)
 
 SRC = $(wildcard *.cpp)
 

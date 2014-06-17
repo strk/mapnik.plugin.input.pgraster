@@ -206,7 +206,7 @@ datasource::datasource_t pgraster_datasource::type() const
 
 const char * pgraster_datasource::name()
 {
-    return "gdal";
+    return "pgraster";
 }
 
 box2d<double> pgraster_datasource::envelope() const
