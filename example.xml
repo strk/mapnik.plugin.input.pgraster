@@ -1,0 +1,25 @@
+<Map>
+
+<Parameters>
+</Parameters>
+
+<Style name="layer0" filter-mode="first">
+  <Rule>
+    <RasterSymbolizer />
+  </Rule>
+</Style>
+<Layer name="layer0">
+    <StyleName>layer0</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[pgraster]]></Parameter>
+       <Parameter name="dbname"><![CDATA[strk]]></Parameter>
+       <Parameter name="user"><![CDATA[strk]]></Parameter>
+       <Parameter name="password"><![CDATA[strk]]></Parameter>
+       <Parameter name="host"><![CDATA[127.0.0.1]]></Parameter>
+       <Parameter name="port"><![CDATA[5493]]></Parameter>
+       <Parameter name="table"><![CDATA[areas]]></Parameter>
+       <Parameter name="raster_field"><![CDATA[r]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
