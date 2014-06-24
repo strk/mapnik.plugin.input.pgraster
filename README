@@ -3,4 +3,9 @@ See https://github.com/mapnik/mapnik/issues/1660
 
 The plugin is a copy of the GDAL plugin but forces use
 of the PostGIS Raster plugin of GDAL an uses PostGIS-like
-parameters of Mapnik
+parameters of Mapnik.
+
+Differences with "postgis" plugin:
+
+ - "geometry_field" is replaced by "raster_field"
+ - Datasource "type" is "pgraster"
