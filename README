@@ -1,3 +1,5 @@
+_DEPRECATED_ by https://github.com/strk/mapnik/tree/2.3.x-pgraster
+
 Experimental Mapnik input plugin for PostGIS Raster
 See https://github.com/mapnik/mapnik/issues/1660
 
